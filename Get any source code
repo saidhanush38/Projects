@@ -1,4 +1,0 @@
-from urllib.request import urlopen
-open1=urlopen('Mention URL here')
-read_open=open1.read()
-print(read_open)
