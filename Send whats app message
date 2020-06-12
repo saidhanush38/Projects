@@ -1,0 +1,2 @@
+import pywhatkit as kit
+kit.sendwhatmsg("Receiver number with country code","Your message",17,21) #You have to mention time here in 24 hours
