@@ -1,0 +1,2 @@
+from plyer import notification
+notification.notify(title="Message from Desktop",message="Hello,Do you know this?",timeout=8)
