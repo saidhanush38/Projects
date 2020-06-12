@@ -1,6 +1,0 @@
-import requests
-url="Give URL path"
-save="Image3.png"
-r=requests.get(url)
-with open(save,"wb") as file:
-    file.write(r.content)
