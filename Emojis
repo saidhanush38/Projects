@@ -1,0 +1,4 @@
+import emojis
+print(emojis.encode(":smile:"))
+print(emojis.encode(":snake:"))
+print(emojis.encode(":heart:"))
