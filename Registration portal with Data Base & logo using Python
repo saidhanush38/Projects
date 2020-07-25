@@ -1,0 +1,311 @@
+'''Hello,I am Dhanush
+ This is a program for Regitration Portal using tkinter library
+ TO run this program you have  to download some of the libraries in Python ,for that
+ 1.Make sure you have net connection
+ 2.Go to command prompt and type the following commands
+       pip install tkinter
+       pip install PIL
+       pip install sqlite3
+ 3. And run this
+         Thank you Have a Good Day.. ☺☻♥  ←←
+ 4. If you want to look the user names and passwords created by different people download DB browser app..
+ after installing press owner button and password is "abc" login.....'''
+from tkinter import *
+from PIL import Image, ImageTk
+from tkinter import messagebox  # showinfo,showerror,showwarning,askquestion,askokcancel,askyesno
+import sqlite3
+
+################################################################################
+# to create tkinter root and main title and dimensions...............
+root = Tk()
+root.geometry("500x578")
+root.title("Registration form")
+
+##################################################################################
+# to insert image
+imge = Image.open("E:\Photos\my_photo.jpeg")  # copy your logo
+photo = ImageTk.PhotoImage(imge)
+
+lab = Label(image=photo)
+lab.pack()
+
+
+##################################################################################
+# two functions used menu bar
+def exitt():
+    x = messagebox.askyesno("Quit", "Do you want to exit?")
+    Label(root, text=x).pack()
+    if (x == 1):
+        root.destroy()
+
+
+def abt():
+    # print("Hello,This is my first ")
+    messagebox.showinfo("Welcome to Author", "This is demo for menu fields:")
+
+
+def home1():
+    messagebox.showinfo("Home", "Welcome to our Registration portal-->>")
+
+
+def abtt():
+    # print("Hello,This is my first ")
+    messagebox.showinfo("Welcome to Author", "This is demo for about fields:")
+
+
+##############################################################################
+# to create mant data bases at a time....comment the printt function and change command in button click me!,execute and open db browser->open data bases.....
+
+def database():
+    name1 = fn.get()
+    last1 = ln.get()
+    date = dob.get()
+    country = var.get()
+
+    pyt = py
+
+    gender = radio_var.get()
+    conn = sqlite3.connect("Form.db")
+    with conn:
+        cursor = conn.cursor()
+    cursor.execute('CREATE TABLE IF NOT EXISTS Student (Name TEXT,Last TEXT,DOB TEXT,Country TEXT,Programming TEXT,Gender TEXT)')
+    cursor.execute('INSERT INTO Student(Name,Last,DOB,Country,Programming,Gender) VALUES(?,?,?,?,?,?)',(name1, last1, date, country, pyt, gender))
+    conn.commit()
+    tkinter.messagebox.showinfo("Welcome", "Registration Successfull!!")
+    ##############################################################################
+
+
+def rateus():
+    wind = Tk()
+    wind.geometry("320x260")
+    wind.title("Rate us")
+
+    var_1 = radio_var.get()
+    sug = StringVar().get()
+
+    label0 = Label(wind, text="Rate us->", relief="solid", fg="blue", bg="white", font=("cambridge", 15, "bold"))
+    label0.place(x=30, y=25)
+
+    rad_1 = Radiobutton(wind, text="1", variable=radio_var, value="1")
+    rad_1.place(x=150, y=25)
+
+    rad_2 = Radiobutton(wind, text="2", variable=radio_var, value="2")
+    rad_2.place(x=185, y=25)
+
+    rad_3 = Radiobutton(wind, text="3", variable=radio_var, value="3")
+    rad_3.place(x=220, y=25)
+
+    rad_4 = Radiobutton(wind, text="4", variable=radio_var, value="4")
+    rad_4.place(x=250, y=25)
+
+    rad_5 = Radiobutton(wind, text="5", variable=radio_var, value="5")
+    rad_5.place(x=280, y=25)
+
+    label1 = Label(wind, text="Suggestions:", relief="solid", fg="blue", bg="white", font=("cambridge", 15, "bold"))
+    label1.place(x=30, y=80)
+
+    ent1 = Entry(wind, textvar=sug)
+    ent1.place(x=180, y=80)
+
+    vari = Button(wind, text="Click Us!", fg="white", bg="green", font=("cambridge", 15, "bold"), command=ratt)
+    vari.place(x=100, y=150)
+
+
+def ratt():
+    tkinter.messagebox.showinfo("Rate us", "Thank you!!\n Your suggestions will be taken for further development ")
+
+
+#############################################################################
+# To create top bar or menu like file,edit options......
+menu = Menu(root)
+root.config(menu=menu)
+
+subm1 = Menu(menu)
+menu.add_cascade(label="File", menu=subm1)
+subm1.add_command(label="Home", command=home1)
+subm1.add_command(label="About", command=abt)
+
+subm2 = Menu(menu)
+menu.add_cascade(label="Option", menu=subm2)
+subm2.add_command(label="Rate us", command=rateus)
+subm2.add_command(label="Exit", command=exitt)
+
+
+##############################################################################
+
+# @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@'@@@@@@@
+def forms():
+    x = input("Enter password:")
+
+    if (x == "abc"):
+        con = sqlite3.connect('Form.db')
+        cur = con.cursor()
+
+        cur.execute('select * from Student')
+        obj = cur.fetchall()
+
+        row_count = len(obj)
+        print("'Full Name',            'DOB'      ,     'Country'     ,      'Pl'     ,    'Gender'   ")
+        print("***************************************************************************************")
+        i = 0
+        while i < row_count:
+            print(obj[i][0], ' ' * (5 - len(obj[i][0])), obj[i][1], ' ' * (15 - len(obj[i][1])), obj[i][2],
+                  ' ' * (15 - len(obj[i][2])), obj[i][3], ' ' * (15 - len(obj[i][3])), obj[i][4],
+                  ' ' * (15 - len(obj[i][4])), obj[i][5], ' ' * (15 - len(obj[i][5])))
+            i += 1
+
+    root.destroy()
+
+
+# @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+# to initialize the variables
+
+fn = StringVar()
+ln = StringVar()
+dob = StringVar()
+var = StringVar()
+var_c1 = "Python"
+var_c2 = "Java"
+var_c3 = "C++"
+py = var_c1 or var_c2 or var_c3
+var_c4 = "Terms and Conditions"
+radio_var = StringVar()
+
+##############################################################################
+
+
+##############################################################################
+
+'''def printt():
+    first=fn.get()
+    sec=ln.get()
+    dobb=dob.get()
+    vari=var.get()
+    py=var_c1
+    py=var_c2
+    py=var_c3
+    var4=radio_var.get()
+    var5=var_c4
+    #if (var5==True):
+    print(f'Your Full name is {first} {sec}')
+    print(f'Your Date of birth  is {dobb}')
+    print(f'Your are from is {vari}')
+    print(f'Your are {var4}')
+    print(f'Your are from {py} Language')
+    tkinter.messagebox.showinfo("Welcome","Registration Successfull!!")'''
+
+
+#####################################################################################
+# for getting second window or page
+def sec_win():
+    wind = Tk()
+    wind.geometry("350x200")
+    wind.title("Welcome New user...")
+
+    menu = Menu(wind)
+    wind.config(menu=menu)
+
+    subm1 = Menu(menu)
+    menu.add_cascade(label="File", menu=subm1)
+    # subm1.add_command(label="Home",command=home1)
+    subm1.add_command(label="About", command=abt)
+
+    subm2 = Menu(menu)
+    menu.add_cascade(label="Option", menu=subm2)
+    subm2.add_command(label="Rate us", command=rateus)
+    subm2.add_command(label="Exit", command=exitt)
+
+    ############################################
+
+    label_1 = Label(wind, text="New User???", relief="solid", font=("arial", 12, "bold"))
+    label_1.place(x=90, y=70)
+    label_2 = Label(wind, text="*Read about our company", font=("arial", 8, "bold"))
+    label_2.place(x=90, y=100)
+
+    but_1 = Button(wind, text="exit", width=12, bg="Red", font=("arial", 12, "bold"), command=exitt)
+    but_1.place(x=180, y=130)
+
+    but_2 = Button(wind, text="About", width=12, font=("arial", 12, "bold"), command=abtt)
+    but_2.place(x=35, y=130)
+
+
+##########################################################################################
+# labels
+
+label0 = Label(root, text="Registration Form", relief="solid", bg="white", width=20, font=("arial", 19, "bold"))
+label0.place(x=90, y=175)
+
+###############################################################################################
+label1 = Label(root, text="First Name:", width=20, font=("arial", 10, "bold"))
+label1.place(x=80, y=240)
+
+# Entries ...to give inputs
+entry_1 = Entry(root, textvar=fn)
+entry_1.place(x=270, y=241)
+
+#################################################################################3###############
+label2 = Label(root, text="Last Name:", width=20, font=("arial", 10, "bold"))
+label2.place(x=80, y=280)
+
+entry_2 = Entry(root, textvar=ln)
+entry_2.place(x=270, y=280)
+###############################################################################################
+label3 = Label(root, text="DOB:", width=20, font=("arial", 10, "bold"))
+label3.place(x=80, y=320)
+
+entry_3 = Entry(root, textvar=dob)
+entry_3.place(x=270, y=318)
+
+###############################################################################################
+label4 = Label(root, text="Country:", width=20, font=("arial", 10, "bold"))
+label4.place(x=75, y=370)
+
+# dropdown list or combo
+list1 = ['India', 'Nepal', 'America', 'Africa', 'Japan', 'Australia']
+dropList = OptionMenu(root, var, *list1)
+var.set("Select country:")
+dropList.config(width=15)
+dropList.place(x=270, y=365)
+###################################################################################################
+label5 = Label(root, text="Prog Lang:", width=20, font=("arial", 10, "bold"))
+label5.place(x=75, y=415)
+
+# check Button ....
+c1 = Checkbutton(root, text="Python", variable=var_c1)
+c1.place(x=270, y=416)
+
+c2 = Checkbutton(root, text="Java", variable=var_c2)
+c2.place(x=340, y=416)
+
+c3 = Checkbutton(root, text="C++", variable=var_c3)
+c3.place(x=400, y=416)
+###################################################################################################
+label6 = Label(root, text="Gender:", width=20, font=("arial", 10, "bold"))
+label6.place(x=75, y=455)
+
+# Radio buttons......
+r1 = Radiobutton(root, text="MALE", variable=radio_var, value="Male")
+r1.place(x=267, y=455)
+
+r2 = Radiobutton(root, text="FEMALE", variable=radio_var, value="Female")
+r2.place(x=325, y=455)
+###################################################################################################
+# main buttons like login ,,exit
+b1 = Button(root, text="Click Me!", width=12, bg="Green", fg="white", command=database)
+b1.place(x=200, y=500)
+root.bind("<Return>", database)
+
+b2 = Button(root, text="Quit", width=12, bg="Red", fg="white", command=exitt)
+b2.place(x=335, y=500)
+
+b3 = Button(root, text="Welcome...", width=12, bg="green", fg="white", command=sec_win)
+b3.place(x=8, y=147)
+
+b4 = Button(root, text="Owner", width=12, bg="Black", fg="white", command=forms)
+b4.place(x=400, y=147)
+####################################################################################################
+c4 = Checkbutton(root, text="*Terms and Conditions*", variable=var_c4)
+c4.place(x=75, y=545)
+
+###################################################################################################
+root.mainloop()
