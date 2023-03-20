@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="eng">
+
+<style>
+
+body {
+  background-color: #f8f8ff;
+  width: 800px;
+  border: 15px solid #047bd5;
+  padding: 50px;
+  margin: 20px;
+}
+
+</style>
+
+<script type="text/javascript">
+    function name(){
+        var name1 =myForms.name.value;
+        if(name1==="null")
+        {
+            alert("Enter name exactly");
+            return false;
+        }
+    }
+
+</script>
+
+
+<head>
+<title align = "center">PAT - Registration Form</title>
+</head>
+
+
+<body style="font-size:20px">
+
+<h1 style = "color:red" align = "center">PAT - Registration Form</h1>
+<form name="myForms" id="myForm" action = "" onsubmit="return name()"> <!--target="_blank"-->
+<strong>Name<span style="color:#ff0000">*</span></strong><br>
+<input type="text" name="name" placeholder="Enter your Name" autofocus required> <br>
+<br>
+
+<strong>Reg. No<span style="color:#ff0000">*</span></strong><br>
+<input type="text" placeholder="Ex: 19MID0016" required> <br>
+<br>
+
+<strong>Sex</strong><br>
+<input type="radio" name="gender" value="Male" >Male<br>
+<input type="radio" name="gender" value="Female" >Female<br>
+<br>
+
+<strong>Mobile Number<span style="color:#ff0000">*</span></strong><br>
+<input type="tel" value="+91-" pattern="+91-[6-9]{1}[0-9]{9} " required><br>
+<br>
+
+<strong>Date of birth<span style="color:#ff0000">*</span></strong><br>
+<input type="date" required><br>
+<br>
+
+<strong>Branch of Study<span style="color:#ff0000">*</span></strong><br>
+<select name="bos">
+<option>CSE</option>
+<option>ECE</option>
+<option>Mechanical</option>
+<option>Integrated M. Tech</option>
+</select><br>
+<br>
+
+<strong>Email<span style="color:#ff0000">*</span></strong><br>
+<input type="email" placeholder="sai@gmail.com" required><br>
+<br>
+
+<strong>Upload Resume<span style="color:#ff0000">*</span></strong><br>
+<input type="file" required><br>
+<br>
+
+<strong>Favourite Color</strong><br>
+<input type="color"><br>
+<br>
+
+<strong>LinkedIn Profile Link<span style="color:#ff0000">*</span></strong><br>
+<input type="url" placeholder="Only link is acceptable" required><br>
+<br>
+
+<strong>Github Profile Link</strong><br>
+<input type="url"><br>
+<br>
+<br>
+
+<div style="text-align:center">
+<strong><input style="height:30px;width:80px; font-size:18px; ; align:center" type="submit" value ="Submit" ></strong>
+</div>
+</form>
+
+
+
+</body>
+</html>
